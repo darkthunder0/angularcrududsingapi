@@ -16,7 +16,7 @@ export class StudentcrudComponent {
     
   }
   
-
+  
 
   userlist: any[] = [];  
 
@@ -26,6 +26,11 @@ export class StudentcrudComponent {
     phone: '',
     salary: ''
   };
+
+  NavigateToUrl(employee: any){
+    // this.userlistt = employee
+    this.router.navigateByUrl(`edit-api/${employee.id}`)
+   }
 
   getEmployee() {
     this.http.get("http://localhost:5008/api/Employee").subscribe({
@@ -41,9 +46,9 @@ export class StudentcrudComponent {
   }
 
 
-  editEmployee(employee: any) {
-    this.userlistt = { ...employee }; 
-  }
+  // editEmployee(employee: any) {
+  //   this.userlistt = { ...employee }; 
+  // }
 
   deleteEmployee(id: number) {
     debugger
@@ -87,10 +92,10 @@ export class StudentcrudComponent {
       }
     });
   }
-  EditRoute(){
-    debugger
-    this.router.navigateByUrl("edit-api")
-  }
+  // EditRoute(id:number){
+  //   debugger
+  //   this.router.navigateByUrl("edit-api")
+  // }
 }
 
 
