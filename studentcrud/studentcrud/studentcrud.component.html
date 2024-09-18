@@ -1,0 +1,167 @@
+<!-- <div class="row"> -->
+<!-- <div class="col-2">
+      <button class="btn btn-success" (click)="getalluser()">Get Users</button>
+    </div> -->
+<!-- <div class="col-2">
+    <button class="btn btn-success" (click)="getEmployee()">
+      Get Employee
+    </button>
+  </div>
+</div>
+<div class="col-3">
+  <select class="form-select">
+    @for (item of userlist; track $index) {
+    <option>{{ item.name }}</option>
+    }
+  </select>
+</div> -->
+<div class="container">
+  <h1>Employee List</h1>
+  <button (click)="getEmployee()">Load Employees</button>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of userlist; track $index) {
+      <tr>
+        <td>{{ item.id }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.email }}</td>
+        <td>{{ item.phone }}</td>
+        <td>
+          <button class="btn btn-primary" (click)="NavigateToUrl(item)">
+            Edit
+          </button>
+          <button class="btn btn-danger" (click)="deleteEmployee(item.id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+
+  <!-- <p *ngIf="userlist.length === 0">No employees found. Click "Load Employees" to fetch data.</p> -->
+</div>
+<div class="col-4">
+  <div class="card">
+    <div class="card-header bg-secondary text-white"></div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12">
+          <label for="">Name</label>
+          <input
+            type="text"
+            [(ngModel)]="userlistt.name"
+            class="form-control"
+            placeholder="Enter Name"
+          />
+        </div>
+
+        <div class="col-12">
+          <label for="">Email</label>
+          <input
+            type="text"
+            [(ngModel)]="userlistt.email"
+            class="form-control"
+            placeholder="Enter Name"
+          />
+        </div>
+        <div class="col-12">
+          <label for="">Phone</label>
+          <input
+            type="text"
+            [(ngModel)]="userlistt.phone"
+            class="form-control"
+            placeholder="Phone"
+          />
+        </div>
+        <div class="col-12">
+          <label for="">Salary</label>
+          <input
+            type="text"
+            [(ngModel)]="userlistt.salary"
+            class="form-control"
+            placeholder="Salary"
+          />
+        </div>
+      </div>
+      <div class="row pt-3">
+        <!-- <div class="col-6 text-center">
+          <button class="btn btn-secondary">Reset</button>
+        </div> -->
+        <div class="col-6 text-center">
+          <button class="btn btn-success" (click)="addemployee()">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5">
+  <h2>Edit Employee</h2>
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12 mb-3">
+          <label for="edit-name">Name</label>
+          <input
+            id="edit-name"
+            type="text"
+            [(ngModel)]="userlistt.name"
+            class="form-control"
+            placeholder="Enter Name"
+          />
+        </div>
+
+        <div class="col-12 mb-3">
+          <label for="edit-email">Email</label>
+          <input
+            id="edit-email"
+            type="text"
+            [(ngModel)]="userlistt.email"
+            class="form-control"
+            placeholder="Enter Email"
+          />
+        </div>
+
+        <div class="col-12 mb-3">
+          <label for="edit-phone">Phone</label>
+          <input
+            id="edit-phone"
+            type="text"
+            [(ngModel)]="userlistt.phone"
+            class="form-control"
+            placeholder="Enter Phone"
+          />
+        </div>
+
+        <div class="col-12 mb-3">
+          <label for="edit-salary">Salary</label>
+          <input
+            id="edit-salary"
+            type="text"
+            [(ngModel)]="userlistt.salary"
+            class="form-control"
+            placeholder="Enter Salary"
+          />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 text-center">
+          <button class="btn btn-success" (click)="updateEmployee()">
+            Update
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
