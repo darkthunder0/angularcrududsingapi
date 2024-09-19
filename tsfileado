@@ -1,0 +1,65 @@
+import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HtmlParser } from '@angular/compiler';
+import { Component } from '@angular/core';
+import { ReactiveFormsModule,FormsModule } from '@angular/forms';
+import { RouterOutlet } from '@angular/router';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet,CommonModule,ReactiveFormsModule,HttpClientModule,FormsModule],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
+})
+export class AppComponent {
+  title = 'todo';
+  emp:any={};
+
+newemp="";
+
+
+  APIURL="http://localhost:5223/api/Employee/";
+  
+constructor (private http:HttpClient){
+
+}
+
+ngOnInit(){
+this.get_employee();
+}
+
+get_employee(){
+  this.http.get(this.APIURL+"get_Employee").subscribe((res)=>{
+
+    this.emp=res;
+  }
+  
+  )
+}
+
+empObj: any = {
+  name: "",
+  gender: "",
+  age: 0,
+  salary: 0,
+  city: ""
+}
+
+  
+addemployee() {
+  console.log(this.empObj);
+  console.log(this.emp)
+  this.http.post(this.APIURL+"add_Employee", this.empObj).subscribe({
+    next: (res) => {
+      console.log("Post Successful");
+
+      this.get_employee();
+    },
+    error: (err) => {
+      console.error('Error adding employee:', err);  
+    }
+  });
+}
+
+}
